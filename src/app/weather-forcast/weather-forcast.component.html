@@ -22,26 +22,47 @@
     </div>
   </nav>
 
-  <div class="col-xl-12 mx-3 my-3 p-3">
+  <div class="col-xl-12 p-3">
     <div class="row">
       <div class="col-xl-4">
         <div class="card my-card">
           <div class="card-body px-3">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-2">
               <div>
                 <p class="m-2">now</p>
                 <h2 class="card-title">{{ todayweather.main.temp }} &deg;C</h2>
                 <h6 class="card-subtitle mb-2">
-                  {{ todayweather.weather[0].main }}
+                  {{ todayweather.weather[0].description }}
                 </h6>
               </div>
-              <div>
-                <img *ngIf="todayweather.weather[0].main == 'Clouds'" style="min-width: 10rem"
-                  src="assets/icons8-clouds-96.png" alt="Weather Icon" />
+              <div class="stage">
+                <img *ngIf="todayweather.weather[0].description == 'Clouds'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/cloud (1).png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'clear sky'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/clear-sky.png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'few clouds'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/cloud (1).png" alt="Weather Icon" />
+                <img *ngIf="
+                    todayweather.weather[0].description == 'scattered clouds'
+                  " class="box bounce-1" style="min-width: 10rem; width: 100px"
+                  src="assets/scattered-thunderstorms.png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'broken clouds'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/cloud (2).png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'shower rain'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/rain.png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'rain'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/rain.png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'thunderstorm'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/thunderstorm.png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'snow'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/snowflake.png" alt="Weather Icon" />
+                <img *ngIf="todayweather.weather[0].description == 'mist'" class="box bounce-1"
+                  style="min-width: 10rem; width: 100px" src="assets/mist.png" alt="Weather Icon" />
               </div>
             </div>
+            <br />
             <hr />
-            <div>
+            <div class="mt-4">
               <p>
                 <span style="margin-right: 10px"><i class="fa-solid fa-calendar-days"></i></span>
                 {{ date }}
@@ -61,10 +82,10 @@
       <div class="col-xl-8">
         <div class="card my-card">
           <div class="card-body">
-            <h3 class="m-2">Todays Highlights</h3>
+            <h6 class="m-2">Todays Highlights</h6>
             <div class="row">
-              <div class="col-xl-7 mt-3">
-                <div class="d-flex justify-content-between">
+              <div class="col-xl-7 mt-3 mb-3">
+                <div class="d-flex justify-content-between content">
                   <div class="p-2">
                     <p style="font-size: 1rem">
                       Sunrise
@@ -87,7 +108,7 @@
                   <div class="p-2">
                     <p style="font-size: 1rem">
                       Visibility
-                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-sun"></i></span>
+                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-eye"></i></span>
                     </p>
 
                     <h2 class="card-title">
@@ -97,7 +118,8 @@
                   <div class="p-2">
                     <p style="font-size: 1rem">
                       Feels like
-                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-cloud-sun"></i></span>
+                      <span style="margin-left: 10px; font-size: 1.5rem"><i
+                          class="fa-solid fa-temperature-three-quarters"></i></span>
                     </p>
                     <h2 class="card-title">
                       {{ todayweather.main.temp }} &deg;C
@@ -106,7 +128,7 @@
                 </div>
               </div>
               <hr />
-              <div class="col-xl-4 mt-3">
+              <div class="col-xl-4 mt-3 content">
                 <div>
                   <p style="font-size: 1rem">Humidity</p>
                   <div class="d-flex justify-content-between p-2">
@@ -114,12 +136,12 @@
                       <span style="font-size: 1.5rem"><i class="fa-solid fa-droplet"></i></span>
                     </p>
                     <h2 class="card-title">
-                      {{ todayweather.main?.humidity}} %
+                      {{ todayweather.main?.humidity }} %
                     </h2>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-4  mt-3">
+              <div class="col-xl-4 mt-3 content">
                 <div class="">
                   <p style="font-size: 1rem">Pressure</p>
                   <div class="d-flex justify-content-between p-2">
@@ -127,13 +149,13 @@
                       <span style="font-size: 1.5rem"><i class="fa-solid fa-wind"></i></span>
                     </p>
                     <h2 class="card-title">
-                      {{ todayweather.main?.pressure}} hPa
+                      {{ todayweather.main?.pressure }} hPa
                     </h2>
                   </div>
                 </div>
               </div>
-              
-              <div class="col-xl-4  mt-3">
+
+              <div class="col-xl-4 mt-3">
                 <div class="">
                   <p style="font-size: 1rem">Wind</p>
                   <div class="d-flex justify-content-between p-2">
@@ -141,11 +163,25 @@
                       <span style="font-size: 1.5rem"><i class="fa-solid fa-fan"></i></span>
                     </p>
                     <h2 class="card-title">
-                      {{ todayweather.wind?.speed}} m/s
+                      {{ todayweather.wind?.speed }} m/s
                     </h2>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xl-4"></div> -->
+      <div class="col-xl-12 p-2">
+        <h3 class="m-2">Weather Forcast</h3>
+        <div style="position: relative" class="card my-card">
+          <div class="card-body px-3 horizontal-scroll-wrapper squares">
+            <div class="text-center pt-2" *ngFor="let x of waetherArray">
+              <h4>{{ x.day | date : "MMM d" }}</h4>
+              <h4>{{ x.day | date : "shortTime" }}</h4>
+              <img [src]="getWeatherIcon(x.icon)" alt="img" />
+              <h4>{{ x.temp }} &deg;C</h4>
             </div>
           </div>
         </div>

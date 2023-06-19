@@ -7,6 +7,11 @@ $inner-White:#d9d9d9;
 $my-Light:#f2f2f2;
 $my-color:#f2f2f2;
 
+///
+$finalHeight: 250px;
+$finalWidth: 6.3 * $finalHeight;
+$scrollBarHeight: 1px;
+
 .my-container{
     position: relative;
     height: 100vh;
@@ -35,8 +40,55 @@ h2{
     border: 0;
     border-radius: 30px;
 }
+.content{
+  border-right: 1px solid $inner-White;
+}
 
 
+
+::-webkit-scrollbar {
+  width: $scrollBarHeight;
+  height: $scrollBarHeight;
+}
+
+::-webkit-scrollbar-button {
+  width: $scrollBarHeight;
+  height: $scrollBarHeight;
+}
+
+.horizontal-scroll-wrapper {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: calc(#{$finalHeight} + #{$scrollBarHeight});
+  max-height: $finalWidth;
+  margin: 0;
+  border-radius: 20px;
+  padding-top: $scrollBarHeight;
+  background: $inner-Dark;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: rotate(-90deg) translateY(-$finalHeight);
+  transform-origin: right top;
+  & > div {
+    display: block;
+    padding: 5px;
+    background: $my-Dark;
+    transform: rotate(90deg);
+    transform-origin: right top;
+  }
+}
+
+.squares {
+  padding: $finalHeight 0 0 0;
+  & > div {
+    width: 200px;
+    height:200px;
+    margin: 10px 0;
+    border-radius: 20px;
+  }
+}
 
 
 
@@ -54,7 +106,7 @@ h2{
   }
   
   .input {
-    width: 170px;
+    width: 250px;
     height: 100%;
     border: none;
     outline: none;
@@ -102,3 +154,24 @@ h2{
     background-color: rgb(255, 230, 230);
     transition-duration: .3s;
   }
+
+  /// animation
+  .box {
+    align-self: flex-end;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-color: transparent;
+    height: 150px;
+    margin: 0 auto 0 auto;
+    transform-origin: bottom;
+    width: 200px;
+}
+.bounce-1 {
+    animation-name: bounce-1;
+    animation-timing-function: linear;
+}
+@keyframes bounce-1 {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}

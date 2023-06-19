@@ -17,6 +17,7 @@ export class WeatherForcastComponent implements OnInit {
   Sunrise:any;
   Sunset: any;
   weatherForcast: any;
+  waetherArray:any =[];
   constructor(private weatherApi: WeatherserviceService) { }
   ngOnInit(): void {
     this.searchLocation()
@@ -55,12 +56,22 @@ export class WeatherForcastComponent implements OnInit {
   }
 
   weatherHistory(){
-    this.weatherApi.getWeatherForcastReport(this.lat,this.lon).subscribe((forcast)=>{
-      this.weatherForcast = forcast;
+    this.weatherApi.getWeatherForcastReport(this.lat,this.lon).subscribe((forcast:any)=>{
+      this.weatherForcast = forcast['list'];
+      
+      this.weatherForcast.forEach((element: any) => {
+        let data ={
+          "day":element.dt_txt,
+          "temp":element.main.temp,
+          "icon":element.weather[0].icon,
+        }
+        this.waetherArray.push(data);
+      });
+      console.log(this.waetherArray)
     })
   }
 
-  getWeatherIcon(icon: string): string {
+  getWeatherIcon(icon: string) {
     return `https://openweathermap.org/img/w/${icon}.png`;
   }
 

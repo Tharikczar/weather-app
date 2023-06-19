@@ -17,7 +17,7 @@ export class WeatherserviceService {
 
   getWeatherForcastReport(lat:any,lon:any){
     
-    return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=a5a45aee0b36dcaa849e81aedfcbd312`);
+    return this.http.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${this.apikeys}`);
 
   }
 }
