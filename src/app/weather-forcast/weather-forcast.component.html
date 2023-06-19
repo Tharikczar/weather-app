@@ -1,0 +1,155 @@
+<div class="container-fluid my-container">
+  <nav>
+    <div class="d-flex justify-content-center">
+      <div class="InputContainer">
+        <input type="text" name="text" class="input" id="input" placeholder="Search" [(ngModel)]="weathercasting" />
+        <label for="input" class="labelforsearch">
+          <span class="searchIcon" (click)="searchLocation()">
+            <i style="color: black; cursor: pointer" class="fa-solid fa-magnifying-glass"></i>
+          </span>
+        </label>
+        <div class="border"></div>
+        <button class="micButton">
+          <span class="micIcon">
+            <i style="color: black" class="fa-solid fa-microphone"></i>
+          </span>
+        </button>
+      </div>
+      <!-- <div>
+                    <span style="margin-right: 1rem;"><i style="font-size: 48px;" class="fa-brands fa-github"></i></span>
+                    <span><i  style="font-size: 48px;" class="fa-brands fa-linkedin"></i></span>
+                </div> -->
+    </div>
+  </nav>
+
+  <div class="col-xl-12 mx-3 my-3 p-3">
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="card my-card">
+          <div class="card-body px-3">
+            <div class="d-flex justify-content-between">
+              <div>
+                <p class="m-2">now</p>
+                <h2 class="card-title">{{ todayweather.main.temp }} &deg;C</h2>
+                <h6 class="card-subtitle mb-2">
+                  {{ todayweather.weather[0].main }}
+                </h6>
+              </div>
+              <div>
+                <img *ngIf="todayweather.weather[0].main == 'Clouds'" style="min-width: 10rem"
+                  src="assets/icons8-clouds-96.png" alt="Weather Icon" />
+              </div>
+            </div>
+            <hr />
+            <div>
+              <p>
+                <span style="margin-right: 10px"><i class="fa-solid fa-calendar-days"></i></span>
+                {{ date }}
+              </p>
+              <p>
+                <span style="margin-right: 10px"><i class="fa-solid fa-clock"></i></span>
+                {{ date | date : "shortTime" }}
+              </p>
+              <p>
+                <span style="margin-right: 10px"><i class="fa-solid fa-location-dot"></i></span>
+                {{ todayweather.name }} ,{{ todayweather.sys.country }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8">
+        <div class="card my-card">
+          <div class="card-body">
+            <h3 class="m-2">Todays Highlights</h3>
+            <div class="row">
+              <div class="col-xl-7 mt-3">
+                <div class="d-flex justify-content-between">
+                  <div class="p-2">
+                    <p style="font-size: 1rem">
+                      Sunrise
+                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-sun"></i></span>
+                    </p>
+
+                    <h2 class="card-title">{{ Sunrise }}</h2>
+                  </div>
+                  <div class="p-2">
+                    <p style="font-size: 1rem">
+                      Sunset
+                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-cloud-sun"></i></span>
+                    </p>
+                    <h2 class="card-title">{{ Sunset }}</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-5 mt-3">
+                <div class="d-flex justify-content-between">
+                  <div class="p-2">
+                    <p style="font-size: 1rem">
+                      Visibility
+                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-sun"></i></span>
+                    </p>
+
+                    <h2 class="card-title">
+                      {{ todayweather.visibility / 1000 }} Km
+                    </h2>
+                  </div>
+                  <div class="p-2">
+                    <p style="font-size: 1rem">
+                      Feels like
+                      <span style="margin-left: 10px; font-size: 1.5rem"><i class="fa-solid fa-cloud-sun"></i></span>
+                    </p>
+                    <h2 class="card-title">
+                      {{ todayweather.main.temp }} &deg;C
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div class="col-xl-4 mt-3">
+                <div>
+                  <p style="font-size: 1rem">Humidity</p>
+                  <div class="d-flex justify-content-between p-2">
+                    <p class="mt-2">
+                      <span style="font-size: 1.5rem"><i class="fa-solid fa-droplet"></i></span>
+                    </p>
+                    <h2 class="card-title">
+                      {{ todayweather.main?.humidity}} %
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4  mt-3">
+                <div class="">
+                  <p style="font-size: 1rem">Pressure</p>
+                  <div class="d-flex justify-content-between p-2">
+                    <p class="mt-2">
+                      <span style="font-size: 1.5rem"><i class="fa-solid fa-wind"></i></span>
+                    </p>
+                    <h2 class="card-title">
+                      {{ todayweather.main?.pressure}} hPa
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-xl-4  mt-3">
+                <div class="">
+                  <p style="font-size: 1rem">Wind</p>
+                  <div class="d-flex justify-content-between p-2">
+                    <p class="mt-2">
+                      <span style="font-size: 1.5rem"><i class="fa-solid fa-fan"></i></span>
+                    </p>
+                    <h2 class="card-title">
+                      {{ todayweather.wind?.speed}} m/s
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
