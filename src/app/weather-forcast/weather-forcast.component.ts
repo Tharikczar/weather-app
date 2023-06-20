@@ -26,7 +26,6 @@ export class WeatherForcastComponent implements OnInit {
   searchLocation() {
     if(this.weathercasting){
       this.getDailyWeaterData();
-    this.weatherHistory()
     }
     
   }
@@ -50,8 +49,10 @@ export class WeatherForcastComponent implements OnInit {
         const sunset = this.todayweather.sys.sunset * 1000;
         this.Sunrise = new DatePipe('en-US').transform(sunrise,' h:mm a');
         this.Sunset = new DatePipe('en-US').transform(sunset,' h:mm a');
-        console.log(this.Sunrise)
-
+        this.lat = this.todayweather.coord.lat;
+        this.lon = this.todayweather.coord.lon;
+        console.log(this.lon)
+        this.weatherHistory();
       })
     }
   }
