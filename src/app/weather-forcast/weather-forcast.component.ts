@@ -44,9 +44,10 @@ export class WeatherForcastComponent implements OnInit {
         const utc = localTime + localOffset;
         const offset = this.todayweather.timezone; 
         const location = utc + (1000 * offset);
+        this.date = new DatePipe('en-US').transform(location,'MMM d, y, h:mm a');
+
         const sunrise =  this.todayweather.sys.sunrise * 1000;
         const sunset = this.todayweather.sys.sunset * 1000;
-        this.date = new DatePipe('en-US').transform(location,'MMM d, y, h:mm a');
         this.Sunrise = new DatePipe('en-US').transform(sunrise,' h:mm a');
         this.Sunset = new DatePipe('en-US').transform(sunset,' h:mm a');
         console.log(this.Sunrise)
