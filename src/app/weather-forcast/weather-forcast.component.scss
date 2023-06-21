@@ -175,3 +175,15 @@ h2{
     50%  { transform: translateY(-20px); }
     100% { transform: translateY(0); }
 }
+
+@media screen and (max-width:1280px) {
+  .res{
+    margin-bottom: 10px;
+  }
+  .content{
+    border: 0px;
+  }
+  .border-bot{
+    border-bottom: 1px solid $inner-White;
+  }
+}

@@ -18,6 +18,7 @@ export class WeatherForcastComponent implements OnInit {
   Sunset: any;
   weatherForcast: any;
   waetherArray:any =[];
+  city: any;
   constructor(private weatherApi: WeatherserviceService) { }
   ngOnInit(): void {
     this.searchLocation()
@@ -60,12 +61,15 @@ export class WeatherForcastComponent implements OnInit {
   weatherHistory(){
     this.weatherApi.getWeatherForcastReport(this.lat,this.lon).subscribe((forcast:any)=>{
       this.weatherForcast = forcast['list'];
+      this.city=forcast.city.name;
+      console.log(this.city)
       
       this.weatherForcast.forEach((element: any) => {
         let data ={
           "day":element.dt_txt,
           "temp":element.main.temp,
           "icon":element.weather[0].icon,
+          "city":this.city
         }
         this.waetherArray.push(data);
       });
