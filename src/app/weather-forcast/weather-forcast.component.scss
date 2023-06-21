@@ -186,4 +186,11 @@ h2{
   .border-bot{
     border-bottom: 1px solid $inner-White;
   }
+  .horizontal-scroll-wrapper{
+    width: 250px;
+  }
+  .my-container{
+    overflow-x: hidden;
+  }
+  
 }
