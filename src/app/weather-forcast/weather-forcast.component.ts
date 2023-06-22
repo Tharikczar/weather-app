@@ -10,8 +10,8 @@ import * as moment from 'moment';
 })
 export class WeatherForcastComponent implements OnInit {
   weathercasting: any = 'madurai';
-  lat:any = 9.9333;
-  lon:any = 78.1167;
+  lat:any;
+  lon:any;
   todayweather: any;
   date: any;
   Sunrise:any;
@@ -27,6 +27,7 @@ export class WeatherForcastComponent implements OnInit {
   searchLocation() {
     if(this.weathercasting){
       this.getDailyWeaterData();
+
     }
     
   }
@@ -52,24 +53,28 @@ export class WeatherForcastComponent implements OnInit {
         this.Sunset = new DatePipe('en-US').transform(sunset,' h:mm a');
         this.lat = this.todayweather.coord.lat;
         this.lon = this.todayweather.coord.lon;
-        console.log(this.lon)
+        console.log(this.lon,this.lat)
         this.weatherHistory();
       })
     }
   }
 
   weatherHistory(){
-    this.weatherApi.getWeatherForcastReport(this.lat,this.lon).subscribe((forcast:any)=>{
+    let latitude = this.lat;
+    let longitude = this.lon;
+    console.log(latitude,longitude)
+    this.weatherApi.getWeatherForcastReport(latitude,longitude).subscribe((forcast:any)=>{
       this.weatherForcast = forcast['list'];
-      this.city=forcast.city.name;
-      console.log(this.city)
+      this.city = forcast.city.name;
+     
+    this.waetherArray=[];
       
       this.weatherForcast.forEach((element: any) => {
         let data ={
           "day":element.dt_txt,
           "temp":element.main.temp,
           "icon":element.weather[0].icon,
-          "city":this.city
+          "city":this.city,
         }
         this.waetherArray.push(data);
       });

@@ -188,9 +188,15 @@ h2{
   }
   .horizontal-scroll-wrapper{
     width: 250px;
+    max-height: 1100px;
   }
   .my-container{
     overflow-x: hidden;
   }
   
+}
+@media screen and (min-width:1900px) {
+  .horizontal-scroll-wrapper{
+    max-height: 2000px;
+  }
 }
